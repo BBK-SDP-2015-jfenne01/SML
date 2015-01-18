@@ -101,7 +101,12 @@ public class Translator {
 			r = scanInt();
 			s1 = scanInt();
 			s2 = scanInt();
-			return new MulInstruction(label, r, s1, s2);	
+			return new MulInstruction(label, r, s1, s2);
+		case "div":
+			r = scanInt();
+			s1 = scanInt();
+			s2 = scanInt();
+			return new DivInstruction(label, r, s1, s2);
 		}
 		
 		
