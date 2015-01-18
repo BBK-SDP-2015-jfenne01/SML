@@ -1,0 +1,9 @@
+f0 lin 0 6
+f1 lin 1 5	
+f2 add 31 0 1
+f3 sub 31 31 0
+f4 mul 31 31 31
+f5 lin 2 1
+f6 sub 31 31 2
+f7 div 31 31 0
+f8 out 0
