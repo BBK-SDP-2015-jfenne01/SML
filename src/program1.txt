@@ -6,3 +6,4 @@ f4 mul 31 31 31
 f5 lin 2 1
 f6 sub 31 31 2
 f7 div 31 31 0
+f8 out 0
