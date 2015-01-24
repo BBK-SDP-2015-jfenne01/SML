@@ -112,11 +112,17 @@ public class Translator {
 			s1 = scanInt();
 			s2 = scanInt();
 			return new OutInstruction(label, r);
+		case "bnz":
+			//register to check
+			r = scanInt();
+			//x is register to jump to, as its a label need to obtain index which represents the pc to jump to
+			String labelTemp = scan();
+			x = labels.indexOf(labelTemp);
+			return new BnzInstruction(label, r, x);	
 		}
 		
 		
 
-		// You will have to write code here for the other instructions.
 
 		return null;
 	}
