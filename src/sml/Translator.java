@@ -83,8 +83,8 @@ public class Translator {
 		String ins = scan();
 		String classPrefix= "sml.";
 		String classSuffix = "Instruction";
-		String fullLabel = classPrefix + ins.substring(0,1).toUpperCase() + label.substring(1,label.length()) + classSuffix ;
-		
+		String fullLabel = classPrefix + ins.substring(0,1).toUpperCase() + ins.substring(1,ins.length()) + classSuffix ;
+		System.out.println("TEST!: " + fullLabel);
 		
 		Class<?> c = null;
 		Object obj = null;
