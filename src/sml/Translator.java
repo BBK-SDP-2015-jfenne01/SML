@@ -74,7 +74,7 @@ public class Translator {
 		return true;
 	}
 
-	
+	// Referred to http://www.newthinktank.com/2012/09/java-reflection-video-tutorial/ for assistance
 	public Instruction getInstruction(String label){			
 		//Using the instruction label, create the class name string from it
 		String ins = scan();
