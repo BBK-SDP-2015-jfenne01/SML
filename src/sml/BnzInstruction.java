@@ -6,20 +6,21 @@ package sml;
 public class BnzInstruction extends Instruction {
 	private int register;
 	private int pc;
+	private String nextInstruction;
 	
 	public BnzInstruction(String label, String opcode) {
 		super(label, opcode);
 	}
 	
-	public BnzInstruction(String label, int register, int pc) {
+	public BnzInstruction(String label, int register, String nextInstruction) {
 		super(label, "bnz");
 		this.register = register;
-		this.pc = pc;
-
+		this.nextInstruction = nextInstruction;		
 	}
 	
 	@Override
 	public void execute(Machine m) {
+		int pc = m.getLabels().indexOf(nextInstruction);
 		if(m.getRegisters().getRegister(register) != 0) m.setPc(pc);
 
 	}
