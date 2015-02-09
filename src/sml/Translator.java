@@ -74,131 +74,55 @@ public class Translator {
 		return true;
 	}
 
-	
-	
-	/*
-	 * Version of getInstruction using reflection
-	 */
-	public Instruction getInstruction(String label) {
+	// Referred to http://www.newthinktank.com/2012/09/java-reflection-video-tutorial/ for assistance
+	public Instruction getInstruction(String label){			
+		//Using the instruction label, create the class name string from it
 		String ins = scan();
 		String classPrefix= "sml.";
 		String classSuffix = "Instruction";
 		String fullLabel = classPrefix + ins.substring(0,1).toUpperCase() + ins.substring(1,ins.length()) + classSuffix ;
-		System.out.println("TEST!: " + fullLabel);
 		
-		Class<?> c = null;
-		Object obj = null;
-		Constructor<?> cons = null;
-		
+		Instruction instruction = null;		
 		try {
-			c = Class.forName(fullLabel);
-			//obj = c.newInstance();
-		
-			Constructor<?>[] a = c.getConstructors();
-			//THIS NEEDS CHANGING, ASSUMES THAT CORRECT CONSTUCTOR IS ALWAYS SECOND ONE
-			Parameter [] param = a[1].getParameters();
+			Class<?> targetClass = Class.forName(fullLabel);
 			
-			//get correct constructor.  All constructors start with a string  args and have between 1 and 4 int args
-			if(param.length == 2){
-				cons = c.getConstructor(new Class[]{String.class, int.class});
-				int arg1 = scanInt();
-				obj = cons.newInstance(new Object[] { label, arg1});
-			} else if(param.length == 3){
-				cons = c.getConstructor(new Class[]{String.class, int.class, int.class});
-				int arg1 = scanInt();
-				int arg2 = scanInt();
-				obj = cons.newInstance(new Object[] { label, arg1, arg2});
-				
-			} else if(param.length == 4){
-				cons = c.getConstructor(new Class[]{String.class, int.class, int.class, int.class});
-				int arg1 = scanInt();
-				int arg2 = scanInt();
-				int arg3 = scanInt();
-				obj = cons.newInstance(new Object[] { label, arg1, arg2, arg3});
-			} else{
-				cons = c.getConstructor(new Class[]{String.class, int.class, int.class, int.class, int.class});
-				int arg1 = scanInt();
-				int arg2 = scanInt();
-				int arg3 = scanInt();
-				int arg4 = scanInt();
-				obj = cons.newInstance(new Object[] {label, arg1, arg2, arg3, arg4});
+			//An array of the targetClass's constructors
+			Constructor<?>[] constuctors = targetClass.getConstructors();
+			
+			//The constructor we're after
+			//TODO how do I just get the constructor I'm after, just go for the bigger constructor i.e with more params??
+			Constructor<?> constructor = constuctors[1];
+			
+			//The class constructor's parameters
+			Parameter [] param = constructor.getParameters();
+			
+			//Object array to collect arguments for the constructor
+			Object[] arguments = new Object[param.length]; 
+			
+			//First argument is the label of the instruction
+			arguments[0] = label;
+			
+			// Loop to add the rest of the arguments to the array.  
+			//TODO needs to be able to handle exceptions e.g for data validation!
+			for(int i = 1; i < param.length; i++){
+				if(param[i].getType().equals(java.lang.String.class)) 
+					arguments[i] = (scan());
+				 else if (param[i].getType().equals(int.class)) 
+					arguments[i] = (scanInt());
 			}
 			
-			
-			
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			//creates new instance of instruction
+			instruction = (Instruction) constructor.newInstance(arguments);
+
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return (Instruction) obj;
-		
-		
-	}	
+		return instruction;
+			
+	}
 	
-	
-	
-	
-    //Switch case version of of getInstruction
-	// line should consist of an MML instruction, with its label already
-	// removed. Translate line into an instruction with label label
-	// and return the instruction
-//	public Instruction getInstruction(String label) {
-//	
-//		int s1; // Possible operands of the instruction
-//		int s2;
-//		int r;
-//		int x;
-//
-//		if (line.equals(""))
-//			return null;
-//
-//		String ins = scan();
-//		switch (ins) {
-//		case "add":
-//			r = scanInt();
-//			s1 = scanInt();
-//			s2 = scanInt();
-//			return new AddInstruction(label, r, s1, s2);
-//		case "lin":
-//			r = scanInt();
-//			s1 = scanInt();
-//			return new LinInstruction(label, r, s1);
-//		case "sub":
-//			r = scanInt();
-//			s1 = scanInt();
-//			s2 = scanInt();
-//			return new SubInstruction(label, r, s1, s2);
-//		case "mul":
-//			r = scanInt();
-//			s1 = scanInt();
-//			s2 = scanInt();
-//			return new MulInstruction(label, r, s1, s2);
-//		case "div":
-//			r = scanInt();
-//			s1 = scanInt();
-//			s2 = scanInt();
-//			return new DivInstruction(label, r, s1, s2);
-//		case "out":
-//			r = scanInt();
-//			s1 = scanInt();
-//			s2 = scanInt();
-//			return new OutInstruction(label, r);
-//		case "bnz":
-//			//register to check
-//			r = scanInt();
-//			//x is register to jump to, as its a label need to obtain index which represents the pc to jump to
-//			String labelTemp = scan();
-//			s1 = labels.indexOf(labelTemp);
-//			return new BnzInstruction(label, r, s1);	
-//		}
-//		return null;
-//	}
 
-	/*
-	 * Return the first word of line and remove it from line. If there is no
-	 * word, return ""
-	 */
 	private String scan() {
 		line = line.trim();
 		if (line.length() == 0)

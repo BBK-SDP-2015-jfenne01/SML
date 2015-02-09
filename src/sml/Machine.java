@@ -19,7 +19,7 @@ public class Machine {
 	private ArrayList<Instruction> prog;
 
 	// The registers of the SML machine
-	private Registers registers;
+	public Registers registers;
 
 	// The program counter; it contains the index (in prog) of
 	// the next instruction to be executed.
