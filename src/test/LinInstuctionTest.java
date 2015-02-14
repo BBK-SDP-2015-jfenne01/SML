@@ -1,5 +1,11 @@
 package test;
 
+/**
+ * 
+ * @author Julian Fenner
+ */
+
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -7,6 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+
+import sml.Instruction;
 import sml.LinInstruction;
 import sml.Machine;
 import sml.Registers;
@@ -45,7 +53,7 @@ public class LinInstuctionTest {
 	
 	@Test
 	public void testToString(){
-		LinInstruction test = new LinInstruction(label, register, value);
+		Instruction test = new LinInstruction(label, register, value);
 		String output = test.toString();
 		String expected = "f1: lin register " + register + " value is " + value;
 		assertEquals(output,expected);

@@ -1,6 +1,9 @@
 package sml;
-/*
- * If the contents of register s1 is not zero, then make the statement labeled L2 the next one to execute
+
+/**
+ * This class checks whether a register's value is zero and if not it changes the program counter to load the specified instruction
+ * 
+ * @author Julian Fenner
  */
 
 public class BnzInstruction extends Instruction {

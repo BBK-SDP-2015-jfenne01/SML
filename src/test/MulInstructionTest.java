@@ -1,16 +1,20 @@
 package test;
 
+/**
+ * 
+ * @author Julian Fenner
+ */
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import sml.Instruction;
 import sml.Machine;
 import sml.MulInstruction;
 import sml.Registers;
-
-
 
 public class MulInstructionTest {
 
@@ -48,7 +52,7 @@ public class MulInstructionTest {
 	
 	@Test
 	public void testExecute() {
-		MulInstruction test = new MulInstruction(label, resultRegister, op1, op2);
+		Instruction test = new MulInstruction(label, resultRegister, op1, op2);
 		test.execute(testMachine);
 		int expected = value1 * value2;
 		int output = testMachine.registers.getRegister(resultRegister);

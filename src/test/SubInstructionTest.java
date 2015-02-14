@@ -1,5 +1,11 @@
 package test;
 
+/**
+ * 
+ * @author Julian Fenner
+ */
+
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -8,6 +14,8 @@ import org.junit.Test;
 
 
 
+
+import sml.Instruction;
 import sml.Machine;
 import sml.Registers;
 import sml.SubInstruction;
@@ -48,7 +56,7 @@ public class SubInstructionTest {
 	
 	@Test
 	public void testExecute() {
-		SubInstruction test = new SubInstruction(label, resultRegister, op1, op2);
+		Instruction test = new SubInstruction(label, resultRegister, op1, op2);
 		test.execute(testMachine);
 		int expected = value1 - value2;
 		int output = testMachine.registers.getRegister(resultRegister);

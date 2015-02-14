@@ -1,5 +1,13 @@
 package sml;
 
+
+/**
+ * This class contains the program's labels, the unique identifier of each line in the program
+ * 
+ * @author Julian Fenner
+ */
+
+
 import java.util.ArrayList;
 
 //An instance contains a list of Strings, called "labels",

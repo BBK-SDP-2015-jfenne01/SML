@@ -3,7 +3,7 @@ package sml;
 /**
  * This class is the superclass of the classes for machine instructions
  * 
- * @author someone
+ * @author Julian Fenner
  */
 
 public abstract class Instruction {

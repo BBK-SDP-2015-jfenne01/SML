@@ -1,5 +1,12 @@
 package sml;
 
+/**
+ * This class multiplies the contents of two registers together and stores them in register
+ * 
+ * @author Julian Fenner
+ */
+
+
 public class MulInstruction extends Instruction {
 
 	private int result;

@@ -1,5 +1,12 @@
 package test;
 
+/**
+ * 
+ * @author Julian Fenner
+ */
+
+
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -7,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sml.DivInstruction;
+import sml.Instruction;
 import sml.Machine;
 import sml.Registers;
 
@@ -47,7 +55,7 @@ public class DivInstructionTest {
 	
 	@Test
 	public void testExecute() {
-		DivInstruction test = new DivInstruction(label, resultRegister, op1, op2);
+		Instruction test = new DivInstruction(label, resultRegister, op1, op2);
 		test.execute(testMachine);
 		int expected = value1 / value2;
 		int output = testMachine.registers.getRegister(resultRegister);
