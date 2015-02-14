@@ -1,4 +1,8 @@
 package test;
+/**
+ *
+ * @author Julian Fenner
+ */
 
 import static org.junit.Assert.*;
 
@@ -7,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sml.AddInstruction;
-import sml.LinInstruction;
+import sml.Instruction;
 import sml.Machine;
 import sml.Registers;
 
@@ -47,7 +51,7 @@ public class AddInstructionTest {
 	
 	@Test
 	public void testExecute() {
-		AddInstruction test = new AddInstruction(label, resultRegister, op1, op2);
+		Instruction test = new AddInstruction(label, resultRegister, op1, op2);
 		test.execute(testMachine);
 		int expected = value1 + value2;
 		int output = testMachine.registers.getRegister(resultRegister);

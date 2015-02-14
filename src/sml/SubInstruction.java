@@ -1,5 +1,11 @@
 package sml;
 
+/**
+ * This class subtracts the contents of one register from another and stores the result in a register
+ * 
+ * @author Julian Fenner
+ */
+
 public class SubInstruction extends Instruction {
 
 	private int result;

@@ -1,5 +1,12 @@
 package sml;
 
+/**
+ * This class prints the value of a register
+ * 
+ * @author Julian Fenner
+ */
+
+
 public class OutInstruction extends Instruction {
 
 	private int op1;

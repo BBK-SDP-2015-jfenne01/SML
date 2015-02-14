@@ -1,5 +1,12 @@
 package sml;
 
+/**
+ * This class divides the contents of one register by another and stores the result in a register
+ * 
+ * @author Julian Fenner
+ */
+
+
 public class DivInstruction extends Instruction {
 
 	private int result;

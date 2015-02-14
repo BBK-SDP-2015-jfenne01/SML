@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-
-
-/*
- * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
+/**
+ * This is the translator of an SML program. 
+ * 
+ * @author Julian Fenner
  */
+
 public class Translator {
 
 	// word + line is the part of the current line that's not yet processed
@@ -90,7 +91,6 @@ public class Translator {
 			Constructor<?>[] constuctors = targetClass.getConstructors();
 			
 			//The constructor we're after
-			//TODO how do I just get the constructor I'm after, just go for the bigger constructor i.e with more params??
 			Constructor<?> constructor = constuctors[1];
 			
 			//The class constructor's parameters

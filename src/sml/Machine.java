@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import lombok.Data;
 
-/*
- * The machine language interpreter
+/**
+ * This is the machine language interpreter responding for loading the program and executing it
+ * 
+ * @author Julian Fenner
  */
+
 @Data
 public class Machine {
 	// The labels in the SML program, in the order in which
